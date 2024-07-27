@@ -1,5 +1,38 @@
-function submitForm(button){
-    alert(button)
+function submitForm(button) {
+    const scores = {
+        top: JSON.parse(localStorage.getItem('top')).playcount,
+        bottom: JSON.parse(localStorage.getItem('bottom')).playcount
+    };
+
+    const isValid = scores[button] < scores[button === 'top' ? 'bottom' : 'top'];
+
+    return isValid ? succeed() : fail();
+}
+
+function fail(){
+    localStorage.removeItem('top')
+    localStorage.removeItem('bottom')
+    localStorage.setItem('score', 0)
+    location.reload()
+}
+
+function succeed(){
+    let score = parseInt(localStorage.getItem('score'))
+    let maxScore = parseInt(localStorage.getItem('maxScore'))
+    localStorage.setItem('score', ++score)
+    localStorage.setItem('maxScore', Math.max(score, maxScore))
+    
+    localStorage.setItem('top', localStorage.getItem('bottom'))
+    localStorage.removeItem('bottom')
+    getData()
+}
+
+function firstVisit(){
+    if(!localStorage.getItem('score')){
+        localStorage.setItem('score', 0)
+        localStorage.setItem('maxScore', 0)
+    }
+    getData()
 }
 
 function randomNumber(max){
@@ -13,6 +46,10 @@ async function getData(){
             const result = await fetch('mapData.json')
             const data = await result.json()
             localStorage.setItem('top', JSON.stringify(data[randomNumber(1000)]))
+        }
+        if(!localStorage.getItem('bottom')){
+            const result = await fetch('mapData.json')
+            const data = await result.json()
             localStorage.setItem('bottom', JSON.stringify(data[randomNumber(1000)]))
         }
         
@@ -30,12 +67,15 @@ function populateDataField(parentId, data){
         //this will be mapper or cover etc
         const attribute = dataFields[i].getAttribute('data-field') 
 
+        //jr dev ass code :sob: i can just do an obj or map buuuut oh well
         if(attribute === 'cover') dataFields[i].src = data['cover']
         else if(attribute === 'playCount') dataFields[i].textContent = data['playcount'].toLocaleString();
         else if(attribute === 'title')dataFields[i].textContent = data['title']
         else if(attribute === 'mapper')dataFields[i].textContent = data['creator']
         else if(attribute === 'audio')dataFields[i].textContent = data['audio']
+        else if(attribute === 'score')dataFields[i].textContent = localStorage.getItem('score')
+        else if(attribute === 'maxScore')dataFields[i].textContent = localStorage.getItem('maxScore')
     }
 }
 
-getData()
+firstVisit()

@@ -21,6 +21,8 @@
             <div id="topPlayCount" class="playCount elipsis">
                 <span data-field="playCount"></span>
             </div>
+            <div id="maxScore"class="score">High Score: <span data-field="maxScore">0</span></div>
+            <div id="score"class="score">Score: <span data-field="score">0</span></div>
         </section>
         <section id="bottom" class="big-border card">
             <h1 class="title elipsis" data-field="title"></h1>
@@ -36,8 +38,8 @@
         <form id="clickers">
             <input type="hidden" id="buttonValue" name="buttonValue" value="">
 
-            <input type="button" onclick="submitForm('up')" id="upclick" class="clicker nodrag">
-            <input type="button" onclick="submitForm('down')" id="downclick" class="clicker nodrag">
+            <input type="button" onclick="submitForm('top')" id="upclick" class="clicker nodrag">
+            <input type="button" onclick="submitForm('bottom')" id="downclick" class="clicker nodrag">
         </form>
         <script src="js/game.js"></script>
     </body>
