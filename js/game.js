@@ -15,7 +15,7 @@ function fail(){
     localStorage.setItem('score', 0)
     animationController()
     setTimeout(() => {
-        window.location.replace('/fail.html')
+        window.location.replace('fail.html')
     }, 1000)
 }
 
