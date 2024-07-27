@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="guess which Osu! beatmapset has more plays">
+    	<meta name="keywords" content="osu!, osu, higher">
+
+		<title>Osu! Higher Lower</title>
+
+		<!-- ICON CAT MEOW -->
+		<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/game.css">
+	</head>
+	<body>
+        <section id="top" class="big-border">
+            <h1 class="title elipsis"><%= beatmapsetOne['title'] %></h1>
+            <p class="mapper"><%= beatmapsetOne['creator'] %></p>
+            <img class="noclick fuzz bg-image" src="<%= beatmapsetOne['covers']['cover@2x'] %>">
+        </section>
+        <section id="bottom" class="big-border card">
+            <h1 class="title elipsis"><%= beatmapsetTwo['title'] %></h1>
+            <p class="mapper"><%= beatmapsetTwo['creator'] %></p>
+            <img class="noclick fuzz bg-image" src="<%= beatmapsetTwo['covers']['cover@2x'] %>">
+        </section>
+        <div class="vs noclick">
+            <span>VS</span>
+        </div>
+        <form id="clickers">
+            <input type="hidden" id="buttonValue" name="buttonValue" value="">
+
+            <input type="button" onclick="submitForm('up')" id="upclick" class="clicker nodrag">
+            <input type="button" onclick="submitForm('down')" id="downclick" class="clicker nodrag">
+        </form>
+        <div id="topPlayCount" class="playCount elipsis">
+            <span><%= beatmapsetOne['play_count'].toLocaleString() %></span>
+        </div>
+        <div id="bottomPlayCount" class="playCount elipsis invis noclick">
+            <span><%= beatmapsetTwo['play_count'].toLocaleString() %></span>
+        </div>
+        <script src="js/game.js"></script>
+    </body>
+</html>
