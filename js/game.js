@@ -13,7 +13,10 @@ function fail(){
     localStorage.removeItem('top')
     localStorage.removeItem('bottom')
     localStorage.setItem('score', 0)
-    location.reload()
+    animationController()
+    setTimeout(() => {
+        window.location.href = '/fail.html'
+    }, 1000)
 }
 
 function succeed(){
@@ -24,7 +27,20 @@ function succeed(){
     
     localStorage.setItem('top', localStorage.getItem('bottom'))
     localStorage.removeItem('bottom')
-    getData()
+    animationController()
+    setTimeout(() => {
+        getData()
+    }, 1000)
+    
+}
+
+function animationController(){
+    document.querySelector('#clickers').classList.add('invis')
+    document.querySelector('#bottomPlayCount').classList.remove('invis')
+    setTimeout(() => {
+        document.querySelector('#clickers').classList.remove('invis')
+        document.querySelector('#bottomPlayCount').classList.add('invis')
+    }, 1000);
 }
 
 function firstVisit(){
@@ -52,7 +68,7 @@ async function getData(){
             const data = await result.json()
             localStorage.setItem('bottom', JSON.stringify(data[randomNumber(1000)]))
         }
-        
+
         populateDataField('#top', JSON.parse(localStorage.getItem('top')))
         populateDataField('#bottom', JSON.parse(localStorage.getItem('bottom')))
     } catch(e){

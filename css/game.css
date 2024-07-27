@@ -145,7 +145,7 @@ body{
 
 #bottomPlayCount{
     right:15%;
-    top:70%;
+    bottom:37.5%;
 }
 
 .playCount::after{
