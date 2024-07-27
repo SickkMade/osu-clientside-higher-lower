@@ -1,3 +1,5 @@
+const path = require('path')
+
 function submitForm(button) {
     const scores = {
         top: JSON.parse(localStorage.getItem('top')).playcount,
@@ -15,7 +17,8 @@ function fail(){
     localStorage.setItem('score', 0)
     animationController()
     setTimeout(() => {
-        window.location.replace('fail.html')
+        const url = path.join(__dirname, '/fail.html')
+        window.location.href = url
     }, 1000)
 }
 
