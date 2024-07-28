@@ -123,10 +123,20 @@ function populateDataField(parentId, data){
         else if(attribute === 'playCount') dataFields[i].textContent = data['playcount'].toLocaleString();
         else if(attribute === 'title')dataFields[i].textContent = data['title']
         else if(attribute === 'mapper')dataFields[i].textContent = data['creator']
-        else if(attribute === 'audio')dataFields[i].textContent = data['audio']
+        else if(attribute === 'audio')dataFields[i].src = data['audio']
         else if(attribute === 'score')dataFields[i].textContent = localStorage.getItem('score')
         else if(attribute === 'maxScore')dataFields[i].textContent = localStorage.getItem('maxScore')
     }
 }
 
 firstVisit()
+
+// more normal js donw here who be coding up there :sob:
+
+document.querySelectorAll('.playButton').forEach(button => {
+    button.addEventListener('click', () => {
+        const audio = button.parentElement.querySelector('audio')
+        if(audio.paused)audio.play()
+        else audio.pause()
+    })
+})
