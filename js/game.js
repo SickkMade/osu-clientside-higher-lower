@@ -126,6 +126,7 @@ function populateDataField(parentId, data){
         else if(attribute === 'audio')dataFields[i].src = data['audio']
         else if(attribute === 'score')dataFields[i].textContent = localStorage.getItem('score')
         else if(attribute === 'maxScore')dataFields[i].textContent = localStorage.getItem('maxScore')
+        else if(attribute === 'maplink')dataFields[i].href = data['maplink']
     }
 }
 
@@ -138,5 +139,7 @@ document.querySelectorAll('.playButton').forEach(button => {
         const audio = button.parentElement.querySelector('audio')
         if(audio.paused)audio.play()
         else audio.pause()
+
+
     })
 })
