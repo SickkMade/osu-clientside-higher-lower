@@ -14,6 +14,7 @@
     --bg-color:rgb(0, 0, 0);
     --playcount-color: #E6E699;
     --text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+    --text-shadow-click: 0 1px 4px rgba(0, 0, 0, .9);
 
     height:100%;
 }
@@ -129,7 +130,6 @@ body{
 .playButton{
     background-color:#ffffff00;
     margin-left:14.5%;
-    margin-bottom:1%;
 
     filter:invert(100%) drop-shadow(var(--text-shadow));
 
@@ -138,6 +138,10 @@ body{
 }
 .playButton:hover{
     cursor:pointer;
+    filter:invert(90%) drop-shadow(var(--text-shadow-click));
+}
+.playButton:active{
+    filter:invert(80%) drop-shadow(var(--text-shadow-click));
 }
 
 .elipsis{
@@ -251,7 +255,7 @@ body{
 
 .score{
     position:absolute;
-    font-size:2rem;
+    font-size:1.75rem;
     top:3%;
 }
 #score{
