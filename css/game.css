@@ -173,3 +173,20 @@ body{
 #maxScore{
     right:1%;
 }
+
+@property --num {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+  }
+  
+  .playCountAnim {
+    animation: counter 0.7s ease-out forwards;
+    counter-reset: num var(--num);
+  }
+  
+  @keyframes counter {
+    to {
+      --num: 100;
+    }
+  }

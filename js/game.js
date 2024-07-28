@@ -9,6 +9,26 @@ function submitForm(button) {
     return isValid ? succeed() : fail();
 }
 
+function increaseNumber(displayElement, max){
+    const duration = 500;
+    const startTime = performance.now();
+
+        function update(){
+            const currentTime = performance.now();
+            const elapsed = currentTime - startTime
+            if(elapsed < duration){
+                const currentValue = max * (elapsed/duration)
+    
+                displayElement.textContent = currentValue.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                requestAnimationFrame(update)
+            } else {
+                displayElement.textContent = max.toLocaleString()
+            }
+        }
+    update()
+    displayElement.textContent = max
+}
+
 function fail(){
     localStorage.removeItem('top')
     localStorage.removeItem('bottom')
@@ -35,11 +55,19 @@ function succeed(){
 }
 
 function animationController(){
-    document.querySelector('#clickers').classList.add('invis')
-    document.querySelector('#bottomPlayCount').classList.remove('invis')
+    const clickers = document.querySelector('#clickers')
+    const bottomPlayCount = document.querySelector('#bottomPlayCount')
+    const bottomPlayCountSpan = bottomPlayCount.querySelector('span')
+    
+    clickers.classList.add('invis')
+    bottomPlayCount.classList.remove('invis')
+
+    //inc number
+    increaseNumber(bottomPlayCountSpan, parseInt(bottomPlayCountSpan.textContent.replace(/,/g, '')))
+
     setTimeout(() => {
-        document.querySelector('#clickers').classList.remove('invis')
-        document.querySelector('#bottomPlayCount').classList.add('invis')
+        clickers.classList.remove('invis')
+        bottomPlayCount.classList.add('invis')
     }, 1000);
 }
 
