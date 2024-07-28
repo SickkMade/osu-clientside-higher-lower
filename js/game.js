@@ -4,7 +4,7 @@ function submitForm(button) {
         bottom: JSON.parse(localStorage.getItem('bottom')).playcount
     };
 
-    const isValid = scores[button] < scores[button === 'top' ? 'bottom' : 'top'];
+    const isValid = scores[button] <= scores[button === 'top' ? 'bottom' : 'top'];
 
     return isValid ? succeed() : fail();
 }
@@ -44,6 +44,13 @@ function succeed(){
     let maxScore = parseInt(localStorage.getItem('maxScore'))
     localStorage.setItem('score', ++score)
     localStorage.setItem('maxScore', Math.max(score, maxScore))
+
+    document.querySelectorAll('.score').forEach(score => {
+        score.classList.add('shake')
+        setTimeout(()=>{
+            score.classList.remove('shake')
+        }, 300)
+    })
     
     localStorage.setItem('top', localStorage.getItem('bottom'))
     localStorage.removeItem('bottom')

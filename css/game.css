@@ -3,20 +3,35 @@
     src:url(../fonts/Aller_Bd.ttf);
 }
 
+@media (max-width: 30em), screen and (orientation: portrait) {
+    html{
+        font-size: 2rem;
+    }
+}
+
 :root{
     --blur-amount:5px;
     --bg-color:rgb(0, 0, 0);
     --playcount-color: #E6E699;
+    --text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
 
     height:100%;
 }
 
+button{
+    font-family:'aller', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: var(--text-shadow);
+
+    border-width:0;
+}
 
 body{
     font-family:'aller', sans-serif;
     color: #fff;
     text-decoration: none;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+    text-shadow: var(--text-shadow);
 
     display:flex;
     flex-flow:column wrap;
@@ -112,26 +127,57 @@ body{
 
 #clickers{
     position:absolute;
-    top:60%;
-    left:75%;
+    top:65%;
+    right:12.5%;
 
-    width:10%;
-    height: 30%;
+    width:15%;
+    height: 23%;
 
     display:flex;
-    align-items:center;
-    flex-flow: column wrap;
+    flex-flow: wrap column;
+    justify-content: space-between;
+    text-align:center;
+}
+#clickers span{
+    font-size:1.25rem;
 }
 .clicker{
-    width:100%;
-    height:50%;
+    position:relative;
+    width:290px;
+    height:65px;
+
+    border-radius:10px;
+    font-size:1.5rem;
+
+    border:1px solid black;
+    text-shadow: var(--text-shadow);
+    background-color:rgba(211, 211, 211, 0.432);
 }
-#upclick{
-    background-color:green;
-    
+.clicker:hover{
+    cursor:pointer;
+    background-color:rgba(161, 161, 161, 0.432);
 }
-#downclick{
-    background-color:red;
+.clicker:active{
+    background-color:rgba(134, 134, 134, 0.432);
+}
+.clicker svg{
+    filter:invert(100%) drop-shadow(var(--text-shadow));
+
+    height:.9em;
+    width:.9em;
+
+    margin-left:5%;
+
+    display: inline-flex;
+    align-self: center;
+
+    top: .125em;
+    position: relative;
+}
+
+#downclick svg{
+    transform: rotate(180deg);
+    filter:invert(100%) drop-shadow(0 -1px 3px rgba(0, 0, 0, .75));
 }
 
 .invis{
@@ -165,12 +211,34 @@ body{
 
 .score{
     position:absolute;
-    font-size:1.25rem;
+    font-size:2rem;
     top:3%;
 }
 #score{
-    left: 1%;
+    right: 1%;
 }
 #maxScore{
-    right:1%;
+    left:1%;
+}
+
+.shake{
+    animation:shake 0.3s;
+}
+
+@keyframes shake{
+    0%{
+        transform: rotateX(-15deg);
+    }
+    25%{
+        transform: rotateX(15deg);
+    }
+    50%{
+        transform: rotateX(-15deg);
+    }
+    75%{
+        transform: rotateX(15deg);
+    }
+    100%{
+        transform: rotateX(0deg);
+    }
 }
