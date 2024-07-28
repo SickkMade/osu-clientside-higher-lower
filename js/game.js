@@ -10,12 +10,12 @@ function submitForm(button) {
 }
 
 function increaseNumber(displayElement, max){
-    const duration = 500;
+    const duration = 1000;
     const startTime = performance.now();
 
         function update(){
             const currentTime = performance.now();
-            const elapsed = currentTime - startTime
+            const elapsed = currentTime - startTime + 500
             if(elapsed < duration){
                 const currentValue = max * (elapsed/duration)
     

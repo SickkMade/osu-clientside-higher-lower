@@ -19,6 +19,8 @@
     height:100%;
 }
 
+
+
 button{
     font-family:'aller', sans-serif;
     color: #fff;
@@ -27,7 +29,6 @@ button{
 
     border-width:0;
 }
-
 body{
     font-family:'aller', sans-serif;
     color: #fff;
@@ -128,6 +129,8 @@ body{
     margin-left:1%;
 }
 .playButton{
+    transition: ease-out .2s all;
+
     background-color:#ffffff00;
     margin-left:14.5%;
 
@@ -166,6 +169,8 @@ body{
     flex-flow: wrap column;
     justify-content: space-between;
     text-align:center;
+
+    
 }
 #clickers span{
     font-size:1.25rem;
@@ -175,19 +180,34 @@ body{
     width:290px;
     height:65px;
 
-    border-radius:10px;
+    border-radius:50px;
     font-size:1.5rem;
 
-    border:1px solid black;
     text-shadow: var(--text-shadow);
-    background-color:rgba(211, 211, 211, 0.432);
+    border: rgb(255, 255, 255) 2px solid;
+    background-color:rgba(255, 255, 255, 0);
 }
+#clickers * {
+    transition: ease-out .2s;
+    transition-property: background-color, transform;
+}
+
 .clicker:hover{
     cursor:pointer;
-    background-color:rgba(161, 161, 161, 0.432);
+    background-color:rgb(255, 255, 255);
+    text-shadow: none;
+    color:#000000
+}
+.clicker:hover .arrowUi{
+    filter:none;
+    transform:translateY(-15%)
+}
+#downclick:hover .arrowUi{
+    filter:none;
+    transform:translateY(15%) rotate(180deg)
 }
 .clicker:active{
-    background-color:rgba(134, 134, 134, 0.432);
+    transform: scale(92.5%);
 }
 .svg{
     height:.4em;
@@ -205,7 +225,7 @@ body{
 }
 
 .clicker svg{
-    filter:invert(100%) drop-shadow(var(--text-shadow));
+    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(var(--text-shadow));
 
     height:.9em;
     width:.9em;
@@ -219,9 +239,9 @@ body{
     position: relative;
 }
 
-#downclick svg{
+#downclick .arrowUi{
     transform: rotate(180deg);
-    filter:invert(100%) drop-shadow(0 -1px 3px rgba(0, 0, 0, .75));
+    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(0 -1px 3px rgba(0, 0, 0, .75));
 }
 
 .invis{
