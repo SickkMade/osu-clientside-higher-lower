@@ -69,7 +69,7 @@ body{
 
 .big-border{
     /* border: black 5px solid; */
-    box-shadow:inset 0px 0px 0px 5px rgb(0, 0, 0);
+    box-shadow:inset 0px 0px 0px 10px rgb(0, 0, 0);
 }
 
 .vs{
@@ -153,7 +153,8 @@ body{
     white-space: pre;
     display: block;
     margin-left:25%;
-    color:white;                                                                                                                                             
+    color:white;           
+    height:20%;                                                                                                                                  
 }
 
 .playCount{
