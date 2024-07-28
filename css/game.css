@@ -143,7 +143,11 @@ body{
     cursor:pointer;
     filter:invert(90%) drop-shadow(var(--text-shadow-click));
 }
+.turned{
+    transform: rotate(-5deg);
+}
 .playButton:active{
+    animation:shake 1s;
     filter:invert(80%) drop-shadow(var(--text-shadow-click));
 }
 
@@ -284,25 +288,28 @@ body{
 #maxScore{
     left:1%;
 }
-
+.scorespan{
+    display:inline-block;
+}
 .shake{
-    animation:shake 0.3s;
+    animation:shake 1s;
+    color:var(--playcount-color);
 }
 
 @keyframes shake{
     0%{
-        transform: rotateX(-15deg);
+        transform: rotate(-15deg);
     }
     25%{
-        transform: rotateX(15deg);
+        transform: rotate(15deg);
     }
     50%{
-        transform: rotateX(-15deg);
+        transform: rotate(-15deg);
     }
     75%{
-        transform: rotateX(15deg);
+        transform: rotate(15deg);
     }
     100%{
-        transform: rotateX(0deg);
+        transform: rotate(0deg);
     }
 }

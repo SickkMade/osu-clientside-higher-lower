@@ -45,12 +45,21 @@ function succeed(){
     localStorage.setItem('score', ++score)
     localStorage.setItem('maxScore', Math.max(score, maxScore))
 
-    document.querySelectorAll('.score').forEach(score => {
-        score.classList.add('shake')
+    //EWWWWWW GROSS CODE yet i write it %-%
+    let scoreElement = document.querySelector('#score').children[0]
+    let maxScoreElement = document.querySelector('#maxScore').children[0]
+
+    scoreElement.classList.add('shake')
+    setTimeout(()=>{
+        scoreElement.classList.remove('shake')
+    }, 1000)
+
+    if(score>maxScore){
+        maxScoreElement.classList.add('shake')
         setTimeout(()=>{
-            score.classList.remove('shake')
-        }, 300)
-    })
+            maxScoreElement.classList.remove('shake')
+        }, 1000)
+    }
     
     localStorage.setItem('top', localStorage.getItem('bottom'))
     localStorage.removeItem('bottom')
@@ -139,7 +148,5 @@ document.querySelectorAll('.playButton').forEach(button => {
         const audio = button.parentElement.querySelector('audio')
         if(audio.paused)audio.play()
         else audio.pause()
-
-
     })
 })
