@@ -115,6 +115,21 @@ body{
     width: 50%;
 }
 
+.playButton{
+    background-color:#ffffff00;
+    margin-left:15%;
+    margin-bottom:1%;
+
+    filter:invert(100%) drop-shadow(var(--text-shadow));
+
+
+    width:4rem;
+    height:4rem;
+}
+.playButton:hover{
+    cursor:pointer;
+}
+
 .elipsis{
     text-overflow:ellipsis;
     overflow:hidden;
