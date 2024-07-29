@@ -317,7 +317,7 @@ body{
     display:inline-block;
 }
 .shake{
-    animation:shakeScale .5s;
+    animation:shakeScale .75s;
     color:var(--playcount-color);
 }
 

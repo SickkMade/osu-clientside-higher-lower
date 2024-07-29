@@ -66,7 +66,7 @@ function succeed(){
         scoreElement.classList.remove('shake')
     })
     maxScoreElement.addEventListener('animationend', ()=>{
-        scoreElement.classList.remove('shake')
+        maxScoreElement.classList.remove('shake')
     })
 
     const vs = document.querySelector('.vs');
