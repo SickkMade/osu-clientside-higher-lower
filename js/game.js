@@ -1,3 +1,5 @@
+const endGameTimeout = 3500;
+
 function submitForm(button) {
     const scores = {
         top: JSON.parse(localStorage.getItem('top')).playcount,
@@ -34,9 +36,20 @@ function fail(){
     localStorage.removeItem('bottom')
     localStorage.setItem('score', 0)
     animationController()
+
+    const vs = document.querySelector('.vs');
+
+    setTimeout(()=>{
+        vs.classList.add('playPassAnimation')
+        vs.classList.add('red')
+        setTimeout(() => {
+            vs.classList.remove('playPassAnimation')
+            vs.classList.remove('red')
+        }, 2500)
+    }, 1000)
     setTimeout(() => {
         window.location.href = './fail.html'; 
-    }, 1000)
+    }, endGameTimeout)
 }
 
 function succeed(){
@@ -60,13 +73,24 @@ function succeed(){
             maxScoreElement.classList.remove('shake')
         }, 1000)
     }
+
+    const vs = document.querySelector('.vs');
+
+    setTimeout(()=>{
+        vs.classList.add('playPassAnimation')
+        vs.classList.add('green')
+        setTimeout(() => {
+            vs.classList.remove('playPassAnimation')
+            vs.classList.remove('green')
+        }, 2500)
+    }, 1000)
     
     localStorage.setItem('top', localStorage.getItem('bottom'))
     localStorage.removeItem('bottom')
     animationController()
     setTimeout(() => {
         getData()
-    }, 1000)
+    }, endGameTimeout)
     
 }
 
@@ -84,7 +108,7 @@ function animationController(){
     setTimeout(() => {
         clickers.classList.remove('invis')
         bottomPlayCount.classList.add('invis')
-    }, 1000);
+    }, endGameTimeout);
 }
 
 function firstVisit(){

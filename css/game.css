@@ -7,6 +7,24 @@
     html{
         font-size: 2rem;
     }
+    body #clickers{
+        height:400px;
+        margin-right:20%;
+    }
+    body .title{
+        margin-top:10%;
+        width: 70%;
+    }
+    body .vs span{
+        font-size: 2rem;
+    }
+    .clicker *{
+        font-size:1rem;
+    }
+    .playButton{
+        margin-top:10%;
+        margin-bottom:10%;
+    }
 }
 
 :root{
@@ -98,6 +116,7 @@ body{
     height:125px;
     background-color: black;
     border-radius:100px;
+    overflow:hidden;
     /* border:black solid 5px; */
 }
 .vs span {
@@ -110,7 +129,8 @@ body{
 }
 
 .title{
-    margin-top: 10%;
+    
+    margin-top: 5%;
     margin-left:15%;
     font-size:2.5rem;
 
@@ -163,11 +183,11 @@ body{
 
 #clickers{
     position:absolute;
-    top:65%;
-    right:12.5%;
+    top:62.5%;
+    right:17%;
 
     width:15%;
-    height: 23%;
+    height: 200px;
 
     display:flex;
     flex-flow: wrap column;
@@ -187,9 +207,11 @@ body{
     border-radius:50px;
     font-size:1.5rem;
 
-    text-shadow: var(--text-shadow);
-    border: rgb(255, 255, 255) 2px solid;
-    background-color:rgba(255, 255, 255, 0);
+    border: rgb(255, 255, 255) 3px solid;
+    background-color:rgb(255, 255, 255);
+    text-shadow: none;
+    color:#000000
+
 }
 #clickers * {
     transition: ease-out .2s;
@@ -198,16 +220,16 @@ body{
 
 .clicker:hover{
     cursor:pointer;
-    background-color:rgb(255, 255, 255);
-    text-shadow: none;
-    color:#000000
+    text-shadow: var(--text-shadow);
+    background-color:rgba(255, 255, 255, 0);
+    color:white;
 }
 .clicker:hover .arrowUi{
-    filter:none;
+    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(var(--text-shadow));
     transform:translateY(-15%)
 }
 #downclick:hover .arrowUi{
-    filter:none;
+    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(0 -1px 3px rgba(0, 0, 0, .75));
     transform:translateY(15%) rotate(180deg)
 }
 .clicker:active{
@@ -229,7 +251,7 @@ body{
 }
 
 .clicker svg{
-    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(var(--text-shadow));
+    
 
     height:.9em;
     width:.9em;
@@ -245,7 +267,7 @@ body{
 
 #downclick .arrowUi{
     transform: rotate(180deg);
-    filter: invert(100%) sepia(50%) saturate(1000%) drop-shadow(0 -1px 3px rgba(0, 0, 0, .75));
+    
 }
 
 .invis{
@@ -268,7 +290,8 @@ body{
     display: block;
     margin-left:25%;
     color:white;           
-    height:20%;                                                                                                                                  
+    height:20%;     
+    overflow:visible;                                                                                                                             
 }
 
 .playCount{
@@ -311,5 +334,27 @@ body{
     }
     100%{
         transform: rotate(0deg);
+    }
+}
+
+.playPassAnimation::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    animation: fill 1.5s forwards; 
+}
+
+.green::before{
+    background-color: green;
+}
+.red::before{
+    background-color: red;
+}
+@keyframes fill {
+    to {
+        height: 100%;
     }
 }
