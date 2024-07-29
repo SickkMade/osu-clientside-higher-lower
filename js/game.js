@@ -59,20 +59,15 @@ function succeed(){
     localStorage.setItem('maxScore', Math.max(score, maxScore))
 
     //EWWWWWW GROSS CODE yet i write it %-%
-    let scoreElement = document.querySelector('#score').children[0]
-    let maxScoreElement = document.querySelector('#maxScore').children[0]
+    let scoreElement = document.querySelector('#score')
+    let maxScoreElement = document.querySelector('#maxScore')
 
-    scoreElement.classList.add('shake')
-    setTimeout(()=>{
+    scoreElement.addEventListener('animationend', ()=>{
         scoreElement.classList.remove('shake')
-    }, 1000)
-
-    if(score>maxScore){
-        maxScoreElement.classList.add('shake')
-        setTimeout(()=>{
-            maxScoreElement.classList.remove('shake')
-        }, 1000)
-    }
+    })
+    maxScoreElement.addEventListener('animationend', ()=>{
+        scoreElement.classList.remove('shake')
+    })
 
     const vs = document.querySelector('.vs');
 
@@ -90,6 +85,10 @@ function succeed(){
     animationController()
     setTimeout(() => {
         getData()
+        scoreElement.classList.add('shake')
+        if(score>maxScore){
+            maxScoreElement.classList.add('shake')
+        }
     }, endGameTimeout)
     
 }

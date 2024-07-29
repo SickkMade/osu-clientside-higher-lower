@@ -37,7 +37,9 @@
     height:100%;
 }
 
-
+h1{
+    margin:0;
+}
 
 button{
     font-family:'aller', sans-serif;
@@ -315,7 +317,7 @@ body{
     display:inline-block;
 }
 .shake{
-    animation:shake 1s;
+    animation:shakeScale .5s;
     color:var(--playcount-color);
 }
 
@@ -334,6 +336,24 @@ body{
     }
     100%{
         transform: rotate(0deg);
+    }
+}
+
+@keyframes shakeScale{
+    0%{
+        transform: rotate(-15deg) scale(100%);
+    }
+    25%{
+        transform: rotate(15deg) scale(150%);;
+    }
+    50%{
+        transform: rotate(-15deg) scale(200%);;
+    }
+    75%{
+        transform: rotate(15deg) scale(150%);;
+    }
+    100%{
+        transform: rotate(0deg) scale(100%);;
     }
 }
 
