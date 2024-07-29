@@ -3,29 +3,12 @@
     src:url(../fonts/Aller_Bd.ttf);
 }
 
-@media (max-width: 30em), screen and (orientation: portrait) {
-    html{
-        font-size: 2rem;
-    }
-    body #clickers{
-        height:400px;
-        margin-right:20%;
-    }
-    body .title{
-        margin-top:10%;
-        width: 70%;
-    }
-    body .vs span{
-        font-size: 2rem;
-    }
-    .clicker *{
-        font-size:1rem;
-    }
-    .playButton{
-        margin-top:10%;
-        margin-bottom:10%;
-    }
+@font-face{
+    font-family: 'allerlight';
+    src:url(../fonts/Aller_Rg.ttf);
 }
+
+
 
 :root{
     --blur-amount:5px;
@@ -35,6 +18,7 @@
     --text-shadow-click: 0 1px 4px rgba(0, 0, 0, .9);
 
     height:100%;
+    font-size:16px;
 }
 
 
@@ -129,21 +113,24 @@ body{
 }
 
 .title{
-    
-    margin-top: 5%;
-    margin-left:15%;
+    position:absolute;
+    top:3%;
+    left:50%;
     font-size:2.5rem;
+    transform: translate(-50%);
 
-    width: 50%;
+    width: 70%;
 }
 
 #topTitle{
     font-size:2.5rem;
+    margin-bottom:0;
 }
 
 #topTitleDiv{
     display:flex;
     flex-flow:row nowrap;
+    justify-content:center;
 }
 #topTitleDiv > a{
     margin-left:1%;
@@ -177,24 +164,32 @@ body{
     white-space: nowrap;
 }
 .mapper{
-    margin-left:15%;
-    font-size:1rem;
+    margin-left:1rem;
+}
+.mapper-div{
+    margin-left:25%;
+
+    display:flex;
+    flex-flow: nowrap row;
 }
 
 #clickers{
     position:absolute;
-    top:62.5%;
-    right:17%;
+    top:60%;
+    right:11.5%;
 
-    width:15%;
-    height: 200px;
+    width:290px;
 
     display:flex;
     flex-flow: wrap column;
-    justify-content: space-between;
+    justify-content:start;
     text-align:center;
 
     
+}
+#clickers > *{
+    margin-top:2.5%;
+    margin-bottom:2.5%;
 }
 #clickers span{
     font-size:1.25rem;
@@ -275,8 +270,9 @@ body{
 }
 
 #topPlayCount{
-    right:15%;
-    top:37.5%;
+    right:50%;
+    transform: translate(50%);
+    top:45%;
 }
 
 #bottomPlayCount{
@@ -290,8 +286,7 @@ body{
     display: block;
     margin-left:25%;
     color:white;           
-    height:20%;     
-    overflow:visible;                                                                                                                             
+    height:20%;                                                                                                                                 
 }
 
 .playCount{
@@ -315,7 +310,7 @@ body{
     display:inline-block;
 }
 .shake{
-    animation:shake 1s;
+    animation:shakeGrow .5s;
     color:var(--playcount-color);
 }
 
@@ -337,6 +332,24 @@ body{
     }
 }
 
+@keyframes shakeGrow{
+    0%{
+        transform: rotate(-15deg) scale(100%);
+    }
+    25%{
+        transform: rotate(15deg) scale(150%);
+    }
+    50%{
+        transform: rotate(-15deg)scale(200%);
+    }
+    75%{
+        transform: rotate(15deg) scale(150%);
+    }
+    100%{
+        transform: rotate(0deg) scale(100%);
+    }
+}
+
 .playPassAnimation::before {
     content: '';
     position: absolute;
@@ -348,13 +361,80 @@ body{
 }
 
 .green::before{
+    filter:drop-shadow(0 2px 10px rgb(107, 255, 107));
     background-color: green;
 }
 .red::before{
+    filter:drop-shadow(0 -2px 10px rgb(255, 118, 118));
     background-color: red;
 }
+
+
 @keyframes fill {
     to {
         height: 100%;
+    }
+}
+
+.regularFont{
+    font-family: 'allerlight', 'aller', sans-serif;
+}
+
+@media (max-width: 30em), screen and (orientation: portrait) {
+    body{
+        font-size:5rem;
+    }
+    #topTitleDiv h1{
+        margin-top: 0%;
+        font-size:4rem;
+        width:70%;
+    }
+    .title{
+        margin-top: 10%;
+        width:70%;
+        font-size:4rem;
+    }
+    .score{
+        font-size:2.5rem;
+    }
+    #score{
+        right:5%;
+    }
+    #maxScore{
+        left:5%;
+    }
+    #topPlayCount{
+        font-size:4rem;
+        top:55%;
+        right:50%;
+        transform: translateX(50%);
+    }
+    #bottomPlayCount{
+        font-size:4rem;
+        top:55%;
+        right:50%;
+        transform: translateX(50%);
+    }
+    #clickers{
+        top:60%;
+        right:55%;
+        transform: translateX(50%);
+        height:50%;
+        width:400px;
+    }
+    #clickers span{
+        font-size:3rem;
+    }
+    .clicker{
+        font-size:3rem;
+        width:520px;
+        height:130px;
+        border-radius:500px;
+    }
+    #clickers .regularFont{
+        font-size:2rem;
+    }
+    #clickers .mapper{
+        font-size:2rem;
     }
 }

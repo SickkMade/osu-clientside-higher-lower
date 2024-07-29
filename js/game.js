@@ -45,7 +45,7 @@ function fail(){
         setTimeout(() => {
             vs.classList.remove('playPassAnimation')
             vs.classList.remove('red')
-        }, 2500)
+        }, endGameTimeout - 1000)
     }, 1000)
     setTimeout(() => {
         window.location.href = './fail.html'; 
@@ -59,20 +59,15 @@ function succeed(){
     localStorage.setItem('maxScore', Math.max(score, maxScore))
 
     //EWWWWWW GROSS CODE yet i write it %-%
-    let scoreElement = document.querySelector('#score').children[0]
-    let maxScoreElement = document.querySelector('#maxScore').children[0]
+    let scoreElement = document.querySelector('#score')
+    let maxScoreElement = document.querySelector('#maxScore')
 
-    scoreElement.classList.add('shake')
-    setTimeout(()=>{
+    scoreElement.addEventListener('animationend', () => {
         scoreElement.classList.remove('shake')
-    }, 1000)
-
-    if(score>maxScore){
-        maxScoreElement.classList.add('shake')
-        setTimeout(()=>{
-            maxScoreElement.classList.remove('shake')
-        }, 1000)
-    }
+    })
+    maxScoreElement.addEventListener('animationend', () => {
+        scoreElement.classList.remove('shake')
+    })
 
     const vs = document.querySelector('.vs');
 
@@ -82,7 +77,7 @@ function succeed(){
         setTimeout(() => {
             vs.classList.remove('playPassAnimation')
             vs.classList.remove('green')
-        }, 2500)
+        }, endGameTimeout - 1000)
     }, 1000)
     
     localStorage.setItem('top', localStorage.getItem('bottom'))
@@ -90,6 +85,11 @@ function succeed(){
     animationController()
     setTimeout(() => {
         getData()
+        scoreElement.classList.add('shake')
+    
+        if(score>maxScore){
+            maxScoreElement.classList.add('shake')
+        }
     }, endGameTimeout)
     
 }
@@ -137,6 +137,8 @@ async function getData(){
             localStorage.setItem('bottom', JSON.stringify(data[randomNumber(1000)]))
         }
 
+
+        populateDataField('#clickers', JSON.parse(localStorage.getItem('bottom')))
         populateDataField('#top', JSON.parse(localStorage.getItem('top')))
         populateDataField('#bottom', JSON.parse(localStorage.getItem('bottom')))
     } catch(e){
